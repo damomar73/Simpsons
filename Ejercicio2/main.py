@@ -1,5 +1,4 @@
 import time
-import json
 import requests
 import csv
 import os
@@ -25,42 +24,31 @@ def obtenerImagen():
         #comprobamos que eliminan los caracteres en blanco y une las palabras del personaje
         #print(personaUnida)
     
-        #creamos la ruta personaje/personaje
-        #join = "/".join([personaje,personaje])
-        #creamos la ruta personaje.csv
+        #creamos la ruta personaje.csv y personaje.png
         joincsv = ''.join([personaje,".csv"])
+        joinpng = ''.join([personaje,".png"])
+
         #eliminanos los espacios en blanco del nombre del archivo csv
         unioncsv = joincsv.replace(" ", "")
-        joinpng = ''.join([personaje,".png"])
+        
         #eliminanos los espacios en blanco del nombre del archivo png
         unionpng = joinpng.replace(" ", "")
         #print(unioncsv)
         #print(unionpng)
-
-            #image = ''.join([join,".png"])
-            #unionimagen = image.replace(" ", "")
-            #filecsv = ''.join([join,".csv"])
-            #unionruta = filecsv.replace(" ", "")
-        #comprobamos que se imprime correctamente la ruta del archivo csv y png
-        #print(unionimagen)
-        #print(unionruta)
-        
 
         #creamos las carpetas de los distintos personajes y evitamos los errores al detectar que ya existe 
         os.makedirs(personaUnida,exist_ok=True)
 
         #creamos la ruta desde la carpeta actual
         ruta = Path(personaUnida)
-        #print(ruta)
-
+        print(ruta)
 
         ruta_con_csv = ruta.joinpath(unioncsv).resolve()
         ruta_con_png = ruta.joinpath(unionpng).resolve()
 
-
         #comprobamos las rutas  tanto del archivo csv como png
         print(ruta_con_csv)
-        #print(ruta_con_png)
+        print(ruta_con_png)
 
         #creamos los archivos csv en las carpetas de cada personaje
         with open(ruta_con_csv,'a') as l:
