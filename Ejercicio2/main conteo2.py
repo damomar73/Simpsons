@@ -3,20 +3,27 @@ import requests
 import csv
 import os
 import re
-from collections import Counter 
+import pandas as pd
 from pathlib import Path
 
-frequency = {}
 
 def obtenerImagen():
-     while True:
-        time.sleep(1)
+    listaPalabras = list()
+    listaFrecuencia = list()
+    frequency = {}
+    dicc = {}
+    diccionario = dict()
+
+    while True:
+        time.sleep(5)
         URL_API=f'https://thesimpsonsquoteapi.glitch.me/quotes'
         respuesta=requests.get(URL_API)
         fraseSimpsons=respuesta.json()
         datos = {"Nombre": fraseSimpsons[0]['character'],"Frase":fraseSimpsons[0]['quote'],"Imagen":fraseSimpsons[0]['image']}
-        datos_csv = {"Nombre": fraseSimpsons[0]['character'],"Frase":fraseSimpsons[0]['quote']}
-
+        datos_csv = {"Frase":fraseSimpsons[0]['quote']}
+        #comprobamos la impresion correcta de la frase
+        #print (datos_csv)
+        
         #comprobamos que la impresion es correcta
         #print (datos)  
         personaje = datos['Nombre']
@@ -50,7 +57,7 @@ def obtenerImagen():
         ruta_con_csv = ruta.joinpath(unioncsv).resolve()
         ruta_con_png = ruta.joinpath(unionpng).resolve()
 
-        #comprobamos las rutas  tanto del archivo csv como png
+        #comprobamos las rutas tanto del archivo .csv como .png
         #print(ruta_con_csv)
         #print(ruta_con_png)
 
@@ -62,30 +69,61 @@ def obtenerImagen():
         #creamos los archivos .png en las carpetas de cada personaje
         with open(ruta_con_png,'wb') as g:
             g.write(requests.get(datos['Imagen']).content)
-
+        
         documento_datos = datos['Frase']
         print(documento_datos)
         text_upper = documento_datos.upper()
-        textUpper = re.sub(r'[.,"\-?:!;&]', '', text_upper)
+        textUpper = re.sub(r'[.,"\-?:!;]', '', text_upper)
         document_text=textUpper.split()
-        #print(document_text)  
+        print(document_text)  
+        #       
+        #match_pattern = re.findall(r'\w+', document_text)
+        #print(match_pattern)
 
+        #for word in match_pattern:
+        '''
         for word in document_text:
             count = frequency.get(word,0)
             frequency[word] = count + 1
+            frequency_list = frequency.keys()
+            #print (frequency_list)
+'''
+
+        items = pd.Series(document_text).value_counts().sort_values(ascending=False).reset_index()
+        items.columns = ['items', '#counts']
+        #df.to_csv(r'ConteoPalabras.csv',header=True,index=False)
+        df = items.to_frame(name = 'Cantidad')
+        df.index.name = 'Palabra'
+        df.to_csv('ConteoPalabras.csv', index=False)
+
+'''     
+        for p in document_text:
+            diccionario[p] = diccionario.get(p, 0) + 1
+            print(p,diccionario[p])
+        print(diccionario)
         
-        #comprobamos las keys del diccionario "frequency"
-        #frequency_list = frequency.keys()
-        #print (frequency_list)
 
-        #comprobamos que se imprime la palabra y su frecuencia en cada quote
-        #for words in frequency_list:
-            #print (words, frequency[words])
 
-        with open('ConteoPalabras.csv', 'w', newline='') as cp:
-            writer = csv.writer(cp, delimiter= '>')
-            for k, v in frequency.items():
-                writer.writerow([k,v])
-      
+        for words in frequency_list:
+            if words in dicc:
+                dicc[words] = frequency[word] + 1
+            else:                
+                dicc[words] = frequency[word]
+                #print (words, dicc[words])
+                #print (words, frequency[word])         
+
+        #listaConteo.append(frequency_list)
+        listaPalabras.append(words)
+        listaFrecuencia.append(dicc[words])
+        conteoFile = open(r'ConteoPalabras.csv','a')
+        conteo = csv.writer(conteoFile)
+        conteo.writerows(listaPalabras)
+        #conteo.writerows(listaFrecuencia)
+    '''
+
 obtenerImagen()
 
+
+
+# Use counter most_common to get most popular 50
+#print(cnts.most_common(50)) 
