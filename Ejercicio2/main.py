@@ -3,7 +3,7 @@ import requests
 import csv
 import os
 import re
-from collections import Counter 
+#from collections import Counter 
 from pathlib import Path
 
 frequency = {}
@@ -83,7 +83,7 @@ def obtenerImagen():
             #print (words, frequency[words])
 
         with open('ConteoPalabras.csv', 'w', newline='') as cp:
-            writer = csv.writer(cp, delimiter= '>')
+            writer = csv.writer(cp,delimiter=';')
             for k, v in frequency.items():
                 writer.writerow([k,v])
       

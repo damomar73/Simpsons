@@ -18,7 +18,7 @@ Tenemos 3 directorios:
  - Homer
  - Lisa
 
- en los cuales se guardan los correspondientes archivos .csv con los quote de Lisa, Homer y en el archivo general el de todos los personajes.
+ en los cuales se guardan los correspondientes archivos .csv con las frases de Lisa, Homer y en el archivo general las frases de todos los personajes.
  En la raiz aparecen los ficheros:
   - Dockerfile
   - main.py
@@ -38,8 +38,9 @@ _b. Great;2_
 
 _3. El código debe crear de manera dinámica las carpetas con nuevos personajes_
 
-  En este ejercicio aparecen los directorios de todos los personajes de la API de los Simpsons en cada uno de los cuales se incluye un archivo con la imagen del personaje en formato .png y un archivo .csv con algunas quotes de dicho personaje.
+  En este ejercicio aparecen los directorios de todos los personajes de la API de los Simpsons en cada uno de los cuales se incluye un archivo con la imagen del personaje en formato .png y un archivo .csv con las frases de dicho personaje.
   En la raiz aparecen los ficheros:
+  - Dockerfile 
   - main.py
   - requirements.txt
   - ConteoPalabras.csv
