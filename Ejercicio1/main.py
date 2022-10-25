@@ -9,7 +9,7 @@ def obtenerFrase():
     listaGeneral = list ()
 
     while True:
-        time.sleep(1)
+        time.sleep(30)
         URL_API=f'https://thesimpsonsquoteapi.glitch.me/quotes'
         respuesta=requests.get(URL_API)
         fraseSimpsons=respuesta.json()

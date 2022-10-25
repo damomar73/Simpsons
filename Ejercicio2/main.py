@@ -3,14 +3,13 @@ import requests
 import csv
 import os
 import re
-#from collections import Counter 
 from pathlib import Path
 
 frequency = {}
 
 def obtenerImagen():
      while True:
-        time.sleep(1)
+        time.sleep(30)
         URL_API=f'https://thesimpsonsquoteapi.glitch.me/quotes'
         respuesta=requests.get(URL_API)
         fraseSimpsons=respuesta.json()
