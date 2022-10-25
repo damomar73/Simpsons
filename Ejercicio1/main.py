@@ -3,16 +3,20 @@ import json
 import requests
 import csv
 
+#definimos la funcion y creamos 3 listas en blanco, una para Homer, otra para Lisa y una General
 def obtenerFrase():
     listaLisa = list()
     listaHomer = list()
-    listaGeneral = list ()
+    listaGeneral = list()
 
     while True:
         time.sleep(30)
         URL_API=f'https://thesimpsonsquoteapi.glitch.me/quotes'
         respuesta=requests.get(URL_API)
         fraseSimpsons=respuesta.json()
+
+#ejecutamos un bucle donde primero creamos el fichero general.csv, a continuacion lisa.csv y finalmemte homer.csv
+#en estos ficheros se almacena la frases de los personajes, en general todas y en lisa y homer las de cada uno de ellos
         for i in fraseSimpsons:
             listaGeneral.append(fraseSimpsons)
             generalFile = open(r'General/general.csv','a')
