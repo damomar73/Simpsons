@@ -64,11 +64,15 @@ def obtenerImagen():
 
         documento_datos = datos['Frase']
         print(documento_datos)
+        #convertimos las letras en mayusculas
         text_upper = documento_datos.upper()
+        #eliminamos los caracteres no necesarios para poder distinguir correctamente las palabras
         textUpper = re.sub(r'[.,"\-?:!;&]', '', text_upper)
+        #separamos las palabras de las frases
         document_text=textUpper.split()
         #print(document_text)  
 
+        #creamos contador de frecuencia de palabras
         for word in document_text:
             count = frequency.get(word,0)
             frequency[word] = count + 1
@@ -81,6 +85,7 @@ def obtenerImagen():
         #for words in frequency_list:
             #print (words, frequency[words])
 
+        #creamos el archivo csv de conteo de palabras
         with open('ConteoPalabras.csv', 'w', newline='') as cp:
             writer = csv.writer(cp,delimiter=';')
             for k, v in frequency.items():
