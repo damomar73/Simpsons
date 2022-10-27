@@ -9,7 +9,7 @@ frequency = {}
 
 def obtenerImagen():
      while True:
-        time.sleep(30)
+        time.sleep(1)
         URL_API=f'https://thesimpsonsquoteapi.glitch.me/quotes'
         respuesta=requests.get(URL_API)
         fraseSimpsons=respuesta.json()

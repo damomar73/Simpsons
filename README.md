@@ -1,4 +1,4 @@
-# Ejercicios Fundamentos - Directorio SIMPSONS
+# Ejercicios Fundamentos - Repositorio SIMPSONS
 ***
 ## Ejercicio 1 (MAGGIE LEVEL)
 ***
