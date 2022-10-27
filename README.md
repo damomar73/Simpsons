@@ -12,6 +12,7 @@ _3. Generar un fichero Docker que copie el código dentro del contenedor y se ej
 
 _4. El fichero docker debe crear al menos las carpetas Lisa y Homer e inicialmente solo coger citas de ellos dos._
 
+El link a google colab es: https://colab.research.google.com/drive/1VP9e-14JZ1DTyGdelkaPxQPXprwPR0FM?usp=sharing
 
 Tenemos 3 directorios: 
  - General

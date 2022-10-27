@@ -14,6 +14,7 @@ def obtenerFrase():
         URL_API=f'https://thesimpsonsquoteapi.glitch.me/quotes'
         respuesta=requests.get(URL_API)
         fraseSimpsons=respuesta.json()
+        print(fraseSimpsons)
 
 #ejecutamos un bucle donde primero creamos el fichero general.csv, a continuacion lisa.csv y finalmemte homer.csv
 #en estos ficheros se almacena la frases de los personajes, en general todas y en lisa y homer las de cada uno de ellos
