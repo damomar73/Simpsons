@@ -35,5 +35,6 @@ def obtenerFrase():
                 homerFile = open(r'Homer/homer.csv','a')
                 homer = csv.writer(homerFile)
                 homer.writerows(listaHomer)
-                     
-obtenerFrase()
+
+if __name__ == "__main__":                  
+    obtenerFrase()

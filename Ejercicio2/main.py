@@ -90,6 +90,7 @@ def obtenerImagen():
             writer = csv.writer(cp,delimiter=';')
             for k, v in frequency.items():
                 writer.writerow([k,v])
-      
-obtenerImagen()
+
+if __name__ == "__main__":   
+    obtenerImagen()
 
